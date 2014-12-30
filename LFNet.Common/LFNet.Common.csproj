@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{00F65E3B-B7AD-42F2-A398-56D5CDDFE125}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LFNet</RootNamespace>
+    <AssemblyName>LFNet.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>sn.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugNet4|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugNet4\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNet4|AnyCPU'">
+    <OutputPath>bin\ReleaseNet4\</OutputPath>
+    <DefineConstants>TRACE;NET4</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNet35|AnyCPU'">
+    <OutputPath>bin\ReleaseNet35\</OutputPath>
+    <DefineConstants>TRACE;NET35</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CBO.cs" />
+    <Compile Include="Common\Collections\ConcurrentDictionary.cs" />
+    <Compile Include="Common\Collections\DelimitedStringCollection.cs" />
+    <Compile Include="Common\Collections\INamedObject.cs" />
+    <Compile Include="Common\Collections\INamedObjectCollection.cs" />
+    <Compile Include="Common\Collections\IndexedEnumerable-T.cs" />
+    <Compile Include="Common\Collections\IndexedEnumerable.cs" />
+    <Compile Include="Common\Collections\IObservableCollection.cs" />
+    <Compile Include="Common\Collections\IObservableList.cs" />
+    <Compile Include="Common\Collections\IReadOnlyCollection.cs" />
+    <Compile Include="Common\Collections\IReadOnlyNamedObjectCollection.cs" />
+    <Compile Include="Common\Collections\NamedObjectBase.cs" />
+    <Compile Include="Common\Collections\NamedObjectCollection.cs" />
+    <Compile Include="Common\Collections\NotifyCollectionItemChangeEventArgs.cs" />
+    <Compile Include="Common\Collections\ObservableCollection.cs" />
+    <Compile Include="Common\Collections\ObservableHashSet.cs" />
+    <Compile Include="Common\Collections\ObservableItemsCollection.cs" />
+    <Compile Include="Common\Collections\ObservableList.cs" />
+    <Compile Include="Common\Collections\ReadOnlyCollection.cs" />
+    <Compile Include="Common\Collections\ReadOnlyNamedObjectCollection.cs" />
+    <Compile Include="Common\Collections\SerializableDictionary.cs" />
+    <Compile Include="Common\Collections\ThreadSafeDictionary.cs" />
+    <Compile Include="Common\Collections\WrappedObservableCollection.cs" />
+    <Compile Include="Common\Collections\WrappedObservableList.cs" />
+    <Compile Include="Common\CommandLine\ArgumentAttribute.cs" />
+    <Compile Include="Common\CommandLine\ArgumentType.cs" />
+    <Compile Include="Common\CommandLine\DefaultArgumentAttribute.cs" />
+    <Compile Include="Common\CommandLine\ErrorReporter.cs" />
+    <Compile Include="Common\CommandLine\Parser.cs" />
+    <Compile Include="Common\Component\AnonymousDisposable.cs" />
+    <Compile Include="Common\Component\DisposableBase.cs" />
+    <Compile Include="Common\Component\IPipelineAction.cs" />
+    <Compile Include="Common\Component\IPipelineContext.cs" />
+    <Compile Include="Common\Component\PipelineActionBase.cs" />
+    <Compile Include="Common\Component\PipelineBase.cs" />
+    <Compile Include="Common\Component\PipelineContextBase.cs" />
+    <Compile Include="Common\Component\Singleton.cs" />
+    <Compile Include="Common\Component\SingletonBase.cs" />
+    <Compile Include="Common\Component\WeakReference.cs" />
+    <Compile Include="Common\Converter.cs" />
+    <Compile Include="Common\Security\Rsa.cs" />
+    <Compile Include="Common\Security\TripleDes.cs" />
+    <Compile Include="Common\Web\CookieUtil.cs" />
+    <Compile Include="Common\DataAnnotations\CreditCardValidation.cs" />
+    <Compile Include="Common\Database\AdoHelper.cs" />
+    <Compile Include="Common\Database\SafeDataReader.cs" />
+    <Compile Include="Common\DateTimeUtil.cs" />
+    <Compile Include="Common\Diagnostics\ExtendedEventLog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Diagnostics\RollingFileTraceListener.cs" />
+    <Compile Include="Common\Diagnostics\TraceTextWriter.cs" />
+    <Compile Include="Common\EmailSender.cs" />
+    <Compile Include="Common\Events\EventArgs.cs" />
+    <Compile Include="Common\Events\IWeakEventHandler.cs" />
+    <Compile Include="Common\Events\IWeakPropertyChangedEventHandler.cs" />
+    <Compile Include="Common\Events\UnregisterDelegate.cs" />
+    <Compile Include="Common\Events\WeakEventExtensions.cs" />
+    <Compile Include="Common\Events\WeakEventHandler.cs" />
+    <Compile Include="Common\Events\WeakEventHandlerGeneric.cs" />
+    <Compile Include="Common\Events\WeakPropertyChangeHandler.cs" />
+    <Compile Include="Common\Extensions\AgeSpan.cs" />
+    <Compile Include="Common\Extensions\ConcurrentDictionaryExtensions.cs" />
+    <Compile Include="Common\Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Common\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Common\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Common\Extensions\EnumHelper.cs" />
+    <Compile Include="Common\Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Common\Extensions\GuidExtensions.cs" />
+    <Compile Include="Common\Extensions\HashExtensions.cs" />
+    <Compile Include="Common\Extensions\ILGeneratorExtensions.cs" />
+    <Compile Include="Common\Extensions\ListExtensions.cs" />
+    <Compile Include="Common\Extensions\NumberExtensions.cs" />
+    <Compile Include="Common\Extensions\PersonNameInfo.cs" />
+    <Compile Include="Common\Extensions\ProfileExtensions.cs" />
+    <Compile Include="Common\Extensions\PropertyChangeExtensions.cs" />
+    <Compile Include="Common\Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Common\Extensions\RetryUtil.cs" />
+    <Compile Include="Common\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
+    <Compile Include="Common\Extensions\StringValidationExtensions.cs" />
+    <Compile Include="Common\Extensions\TimeSpanExtensions.cs" />
+    <Compile Include="Common\Extensions\TypeExtensions.cs" />
+    <Compile Include="Common\Extensions\Validation.cs" />
+    <Compile Include="Common\Extensions\ValidationExtender.cs" />
+    <Compile Include="Common\Extensions\ValidatorExtensions.cs" />
+    <Compile Include="Common\Collections\Generic\KeyedList.cs" />
+    <Compile Include="Common\FilePathUtil.cs" />
+    <Compile Include="Common\Collections\Generic\ParentKeyedList.cs" />
+    <Compile Include="Common\HtmlUtil.cs" />
+    <Compile Include="Common\HttpUtils.cs" />
+    <Compile Include="Common\IHydratable.cs" />
+    <Compile Include="Common\JRequest.cs" />
+    <Compile Include="Common\JsonExtension.cs" />
+    <Compile Include="Common\Logging\LogConfig.cs" />
+    <Compile Include="Common\Logging\LogTargetConfig.cs" />
+    <Compile Include="Common\Logging\ConsoleTarget.cs" />
+    <Compile Include="Common\Logging\FileTarget.cs" />
+    <Compile Include="Common\Logging\Logger.cs" />
+    <Compile Include="Common\Logging\LogManager.cs" />
+    <Compile Include="Common\Logging\LogRouter.cs" />
+    <Compile Include="Common\Logging\LogTarget.cs" />
+    <Compile Include="Common\Logs\LogLevel.cs" />
+    <Compile Include="Common\Logs\SimpleLogger.cs" />
+    <Compile Include="Common\LogUtil.cs" />
+    <Compile Include="Common\MyProcess.cs" />
+    <Compile Include="Common\NameObjectCollection.cs" />
+    <Compile Include="Common\Null.cs" />
+    <Compile Include="Common\ObjectMappingInfo.cs" />
+    <Compile Include="Common\ObjectXml.cs" />
+    <Compile Include="Common\PerfCounter.cs" />
+    <Compile Include="Common\ReflectionDynamicObject.cs" />
+    <Compile Include="Common\Threading\TimeSpanTriger.cs" />
+    <Compile Include="Configuration\BaseCollection.cs" />
+    <Compile Include="Configuration\BaseConfig.cs" />
+    <Compile Include="Configuration\ConfigFileManager.cs" />
+    <Compile Include="Configuration\ConfigInfo.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Configuration\IdConfigCollection.cs" />
+    <Compile Include="Configuration\IdNameConfigCollection.cs" />
+    <Compile Include="Configuration\NameConfigCollection.cs" />
+    <Compile Include="Configuration\ParentConfigCollection.cs" />
+    <Compile Include="Configuration\SortedConfigCollection.cs" />
+    <Compile Include="Configuration\Utils.cs" />
+    <Compile Include="Common\BusinessDay.cs" />
+    <Compile Include="Common\BusinessWeek.cs" />
+    <Compile Include="Common\Helpers\CreditCardHelper.cs" />
+    <Compile Include="Common\Helpers\CreditCardType.cs" />
+    <Compile Include="Common\Helpers\DebugHelper.cs" />
+    <Compile Include="Common\Helpers\DebugWriter.cs" />
+    <Compile Include="Common\Helpers\FileHelper.cs" />
+    <Compile Include="Common\Helpers\HashCodeCombiner.cs" />
+    <Compile Include="Common\Helpers\ImageHelper.cs" />
+    <Compile Include="Common\Helpers\IsolatedStorageHelper!1.cs" />
+    <Compile Include="Common\Helpers\LambdaComparer-T-.cs" />
+    <Compile Include="Common\Helpers\ObjectDumper.cs" />
+    <Compile Include="Common\Helpers\ObjectDumperStrategy\DumperWriterStrategyBase.cs" />
+    <Compile Include="Common\Helpers\ObjectDumperStrategy\IDumperWriterStrategy.cs" />
+    <Compile Include="Common\Helpers\ObjectDumperStrategy\TextWriterStrategy.cs" />
+    <Compile Include="Common\Helpers\ObjectDumperStrategy\XmlWriterStrategy.cs" />
+    <Compile Include="Common\Helpers\PropertyComparer!1.cs" />
+    <Compile Include="Common\Helpers\PropertyComparer.cs" />
+    <Compile Include="Common\Helpers\SelfSerializer.cs" />
+    <Compile Include="Common\Helpers\SelfSerializerStrategy\BinarySerializationStrategy.cs" />
+    <Compile Include="Common\Helpers\SelfSerializerStrategy\ISerializationStrategy.cs" />
+    <Compile Include="Common\Helpers\SelfSerializerStrategy\XmlSerializationStrategy.cs" />
+    <Compile Include="Common\Helpers\SortExpression.cs" />
+    <Compile Include="Common\Helpers\TypeHelper.cs" />
+    <Compile Include="Common\Helpers\XmlHelper.cs" />
+    <Compile Include="Common\IO\DirectoryLock.cs" />
+    <Compile Include="Common\IO\LockBase-T-.cs" />
+    <Compile Include="Common\IO\LockFile.cs" />
+    <Compile Include="Common\IO\NullTextWriter.cs" />
+    <Compile Include="Common\IO\PathHelper.cs" />
+    <Compile Include="Common\IO\PermissionHelper.cs" />
+    <Compile Include="Common\IO\SafeTextWriter.cs" />
+    <Compile Include="Common\IO\StringEncodedWriter.cs" />
+    <Compile Include="Common\Reflection\ArraySpec.cs" />
+    <Compile Include="Common\Reflection\AssemblyHelper.cs" />
+    <Compile Include="Common\Reflection\CallMethodException.cs" />
+    <Compile Include="Common\Reflection\DelegateFactory.cs" />
+    <Compile Include="Common\Reflection\DynamicConstructor.cs" />
+    <Compile Include="Common\Reflection\DynamicMemberGetter.cs" />
+    <Compile Include="Common\Reflection\DynamicMemberHandle.cs" />
+    <Compile Include="Common\Reflection\DynamicMemberMethod.cs" />
+    <Compile Include="Common\Reflection\DynamicMemberSetter.cs" />
+    <Compile Include="Common\Reflection\DynamicMethodHandle.cs" />
+    <Compile Include="Common\Reflection\DynamicMethodHandlerFactory.cs" />
+    <Compile Include="Common\Reflection\FieldAccessor.cs" />
+    <Compile Include="Common\Reflection\IMemberAccessor.cs" />
+    <Compile Include="Common\Reflection\LateBinder.cs" />
+    <Compile Include="Common\Reflection\LateBoundConstructor.cs" />
+    <Compile Include="Common\Reflection\LateBoundGet.cs" />
+    <Compile Include="Common\Reflection\LateBoundMethod.cs" />
+    <Compile Include="Common\Reflection\LateBoundSet.cs" />
+    <Compile Include="Common\Reflection\MemberAccessor.cs" />
+    <Compile Include="Common\Reflection\MethodCacheKey.cs" />
+    <Compile Include="Common\Reflection\MethodCaller.cs" />
+    <Compile Include="Common\Reflection\ObjectCopier.cs" />
+    <Compile Include="Common\Reflection\ObjectCopierSettings.cs" />
+    <Compile Include="Common\Reflection\PropertyAccessor.cs" />
+    <Compile Include="Common\Reflection\TypeAccessor.cs" />
+    <Compile Include="Common\Reflection\TypeSpec.cs" />
+    <Compile Include="Common\Rules\RuleAction!1.cs" />
+    <Compile Include="Common\Rules\RuleContext!1.cs" />
+    <Compile Include="Common\Rules\RuleCriteria.cs" />
+    <Compile Include="Common\Rules\RuleOperator.cs" />
+    <Compile Include="Common\Rules\RuleTrigger.cs" />
+    <Compile Include="Common\Scheduler\DefaultJobLockProvider.cs" />
+    <Compile Include="Common\Scheduler\IJob.cs" />
+    <Compile Include="Common\Scheduler\IJobConfiguration.cs" />
+    <Compile Include="Common\Scheduler\Job.cs" />
+    <Compile Include="Common\Scheduler\JobAction.cs" />
+    <Compile Include="Common\Scheduler\JobBase.cs" />
+    <Compile Include="Common\Scheduler\JobCollection.cs" />
+    <Compile Include="Common\Scheduler\JobCompletedEventArgs.cs" />
+    <Compile Include="Common\Scheduler\JobConfiguration.cs" />
+    <Compile Include="Common\Scheduler\JobContext.cs" />
+    <Compile Include="Common\Scheduler\JobElement.cs" />
+    <Compile Include="Common\Scheduler\JobElementCollection.cs" />
+    <Compile Include="Common\Scheduler\JobEventArgs.cs" />
+    <Compile Include="Common\Scheduler\JobHistoryProvider.cs" />
+    <Compile Include="Common\Scheduler\JobHttpModule.cs" />
+    <Compile Include="Common\Scheduler\JobLock.cs" />
+    <Compile Include="Common\Scheduler\JobLockProvider.cs" />
+    <Compile Include="Common\Scheduler\JobLockProviderCollection.cs" />
+    <Compile Include="Common\Scheduler\JobManager.cs" />
+    <Compile Include="Common\Scheduler\JobManagerSection.cs" />
+    <Compile Include="Common\Scheduler\JobProvider.cs" />
+    <Compile Include="Common\Scheduler\JobProviderCollection.cs" />
+    <Compile Include="Common\Scheduler\JobResult.cs" />
+    <Compile Include="Common\Scheduler\JobStatus.cs" />
+    <Compile Include="Common\Scheduler\StaticLockProvider.cs" />
+    <Compile Include="Common\Security\Crc32.cs" />
+    <Compile Include="Common\Security\HashBuilder.cs" />
+    <Compile Include="Common\Security\PasswordGenerator.cs" />
+    <Compile Include="Common\Security\SaltedHashBuilder.cs" />
+    <Compile Include="Common\Services\GeoIpService.cs" />
+    <Compile Include="Common\Services\GeoLocationInfo.cs" />
+    <Compile Include="Common\ShortGuid.cs" />
+    <Compile Include="Common\Text\CsvParser.cs" />
+    <Compile Include="Common\Text\NameFormatter.cs" />
+    <Compile Include="Common\Threading\CallerThreadContext.cs" />
+    <Compile Include="Common\Threading\CallToPostExecute.cs" />
+    <Compile Include="Common\Threading\IHasWorkItemPriority.cs" />
+    <Compile Include="Common\Threading\Internal\CanceledWorkItemsGroup.cs" />
+    <Compile Include="Common\Threading\Internal\IInternalWorkItemResult.cs" />
+    <Compile Include="Common\Threading\Internal\ISTPInstancePerformanceCounters.cs" />
+    <Compile Include="Common\Threading\Internal\IWorkItem.cs" />
+    <Compile Include="Common\Threading\Internal\NullSTPInstancePerformanceCounters.cs" />
+    <Compile Include="Common\Threading\Internal\PriorityQueue.cs" />
+    <Compile Include="Common\Threading\Internal\STPInstanceNullPerformanceCounter.cs" />
+    <Compile Include="Common\Threading\Internal\STPInstancePerformanceCounter.cs" />
+    <Compile Include="Common\Threading\Internal\STPInstancePerformanceCounters.cs" />
+    <Compile Include="Common\Threading\Internal\STPPerformanceCounter.cs" />
+    <Compile Include="Common\Threading\Internal\STPPerformanceCounters.cs" />
+    <Compile Include="Common\Threading\Internal\STPPerformanceCounterType.cs" />
+    <Compile Include="Common\Threading\Internal\WorkItem.cs" />
+    <Compile Include="Common\Threading\Internal\WorkItemFactory.cs" />
+    <Compile Include="Common\Threading\Internal\WorkItemsGroup.cs" />
+    <Compile Include="Common\Threading\Internal\WorkItemsQueue.cs" />
+    <Compile Include="Common\Threading\Internal\WorkItemStateCallback.cs" />
+    <Compile Include="Common\Threading\IWorkItemResult.cs" />
+    <Compile Include="Common\Threading\IWorkItemsGroup.cs" />
+    <Compile Include="Common\Threading\Lazy-T-.cs" />
+    <Compile Include="Common\Threading\LazyThreadSafetyMode.cs" />
+    <Compile Include="Common\Threading\PostExecuteWorkItemCallback.cs" />
+    <Compile Include="Common\Threading\SafeDelegate.cs" />
+    <Compile Include="Common\Threading\SmartThreadPool.cs" />
+    <Compile Include="Common\Threading\STPStartInfo.cs" />
+    <Compile Include="Common\Threading\Synchronized!1.cs" />
+    <Compile Include="Common\Threading\System_LazyDebugView!1.cs" />
+    <Compile Include="Common\Threading\WIGStartInfo.cs" />
+    <Compile Include="Common\Threading\WorkItemCallback.cs" />
+    <Compile Include="Common\Threading\WorkItemCancelException.cs" />
+    <Compile Include="Common\Threading\WorkItemInfo.cs" />
+    <Compile Include="Common\Threading\WorkItemPriority.cs" />
+    <Compile Include="Common\Threading\WorkItemResultException.cs" />
+    <Compile Include="Common\Threading\WorkItemsGroupIdleHandler.cs" />
+    <Compile Include="Common\Threading\WorkItemTimeoutException.cs" />
+    <Compile Include="Common\Visitor\DynamicVisitor-TBase-.cs" />
+    <Compile Include="Common\Win32\AttachmentCollection.cs" />
+    <Compile Include="Common\Win32\ContentType.cs" />
+    <Compile Include="Common\Win32\FileIcon.cs" />
+    <Compile Include="Common\Win32\MailDialog.cs" />
+    <Compile Include="Common\Win32\Mapi.cs" />
+    <Compile Include="Common\Win32\NativeMethods.cs" />
+    <Compile Include="Common\Win32\Recipient.cs" />
+    <Compile Include="Common\Win32\RecipientCollection.cs" />
+    <Compile Include="Common\Win32\SendMailCompleteEventArgs.cs" />
+    <Compile Include="Common\Win32\ShellIconSize.cs" />
+    <Compile Include="Common\Win32\WindowUtils.cs" />
+    <Compile Include="Common\Xml\NamespaceParser.cs" />
+    <Compile Include="Licensing\Base32Decoder.cs" />
+    <Compile Include="Licensing\Base32Encoder.cs" />
+    <Compile Include="Licensing\IEncoder.cs" />
+    <Compile Include="Licensing\DecoderSequence.cs" />
+    <Compile Include="Licensing\EncoderSequence.cs" />
+    <Compile Include="Licensing\IDecoder.cs" />
+    <Compile Include="Licensing\ILicenseStorer.cs" />
+    <Compile Include="Licensing\IProtector.cs" />
+    <Compile Include="Licensing\KeyStringFormatter.cs" />
+    <Compile Include="Licensing\License.cs" />
+    <Compile Include="Licensing\LicenseBinding.cs" />
+    <Compile Include="Licensing\LicenseConverter.cs" />
+    <Compile Include="Licensing\LicenseInformationFormatter.cs" />
+    <Compile Include="Licensing\LicenseType.cs" />
+    <Compile Include="Licensing\LicenseVerificator.cs" />
+    <Compile Include="Licensing\LicensingException.cs" />
+    <Compile Include="Licensing\MD5Managed.cs" />
+    <Compile Include="Licensing\NewLicenseSerializer.cs" />
+    <Compile Include="Licensing\OldLicenseSerializer.cs" />
+    <Compile Include="Licensing\PlainLicenseSerializer.cs" />
+    <Compile Include="Licensing\ProductVersionAttribute.cs" />
+    <Compile Include="Licensing\RegistryLicenseStorer.cs" />
+    <Compile Include="Licensing\RSALicenseCodec.cs" />
+    <Compile Include="Licensing\RSAParametersLoader.cs" />
+    <Compile Include="Licensing\XorLicenseCodec.cs" />
+    <Compile Include="Common\Net\Extension.cs" />
+    <Compile Include="Common\Net\HttpFileInfo.cs" />
+    <Compile Include="Common\Net\HttpFileStream.cs" />
+    <Compile Include="Common\Net\JWebRequest.cs" />
+    <Compile Include="Common\Net\NetConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\RNG.cs" />
+    <Compile Include="Common\SecurityUtil.cs" />
+    <Compile Include="Common\SerializationHelper.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Common\Validator.cs" />
+    <Compile Include="Common\XmlUtils.cs" />
+    <Compile Include="System\AggregateExceptionExtensions.cs" />
+    <Compile Include="System\Collections\Concurrent\BlockingCollectionExtensions.cs" />
+    <Compile Include="System\Collections\Concurrent\ConcurrentPriorityQueue!2.cs" />
+    <Compile Include="System\Collections\Concurrent\IProducerConsumerCollection_DebugView!1.cs" />
+    <Compile Include="System\Collections\Concurrent\ObjectPool!1.cs" />
+    <Compile Include="System\Collections\Concurrent\ObservableConcurrentCollection!1.cs" />
+    <Compile Include="System\Collections\Concurrent\ObservableConcurrentDictionary!2.cs" />
+    <Compile Include="System\Collections\Concurrent\Partitioners\ChunkPartitioner!1.cs" />
+    <Compile Include="System\Collections\Concurrent\Partitioners\ChunkPartitioner.cs" />
+    <Compile Include="System\Collections\Concurrent\Partitioners\SingleItemPartitioner.cs" />
+    <Compile Include="System\Collections\Concurrent\ProducerConsumerCollectionBase!1.cs" />
+    <Compile Include="System\Collections\Concurrent\ProducerConsumerCollectionExtensions.cs" />
+    <Compile Include="System\DelegateBasedObserver!1.cs" />
+    <Compile Include="System\DelegateExtensions.cs" />
+    <Compile Include="System\IO\AbstractStreamBase.cs" />
+    <Compile Include="System\IO\Extension.cs" />
+    <Compile Include="System\IO\FileAsync.cs" />
+    <Compile Include="System\IO\StreamExtensions.cs" />
+    <Compile Include="System\LazyExtensions.cs" />
+    <Compile Include="System\Linq\LinqToTasks.cs" />
+    <Compile Include="System\Linq\ParallelLinqExtensions.cs" />
+    <Compile Include="System\Linq\ParallelLinqOptions.cs" />
+    <Compile Include="System\Linq\SortedTopN!2.cs" />
+    <Compile Include="System\Net\NetworkInformation\PingExtensions.cs" />
+    <Compile Include="System\Net\NetworkInformation\SmtpClientExtensions.cs" />
+    <Compile Include="System\Net\WebClientExtensions.cs" />
+    <Compile Include="System\Net\WebRequestExtensions.cs" />
+    <Compile Include="System\Threading\ActionCountdownEvent.cs" />
+    <Compile Include="System\Threading\Algorithms\ParallelAlgorithms.cs" />
+    <Compile Include="System\Threading\AsyncCache!2.cs" />
+    <Compile Include="System\Threading\AsyncCache_DebugView!2.cs" />
+    <Compile Include="System\Threading\Async\AsyncBarrier.cs" />
+    <Compile Include="System\Threading\Async\AsyncProducerConsumerCollection!1.cs" />
+    <Compile Include="System\Threading\Async\AsyncReaderWriter.cs" />
+    <Compile Include="System\Threading\Async\AsyncSemaphore.cs" />
+    <Compile Include="System\Threading\CancellationTokenExtensions.cs" />
+    <Compile Include="System\Threading\HtmlAsyncCache.cs" />
+    <Compile Include="System\Threading\Pipeline!2.cs" />
+    <Compile Include="System\Threading\Pipeline.cs" />
+    <Compile Include="System\Threading\ReductionVariable!1.cs" />
+    <Compile Include="System\Threading\ReductionVariable_DebugView!1.cs" />
+    <Compile Include="System\Threading\SpinLockClass.cs" />
+    <Compile Include="System\Threading\Tasks\AsyncCall!1.cs" />
+    <Compile Include="System\Threading\Tasks\AsyncCall.cs" />
+    <Compile Include="System\Threading\Tasks\CompletedTask!1.cs" />
+    <Compile Include="System\Threading\Tasks\CompletedTask.cs" />
+    <Compile Include="System\Threading\Tasks\EAPCommon.cs" />
+    <Compile Include="System\Threading\Tasks\ParallelOptionsExtensions.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\ConcurrentExclusiveInterleave.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\CurrentThreadTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\IOCompletionPortTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\LimitedConcurrencyLevelTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\OrderedTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\QueuedTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\ReprioritizableTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\RoundRobinSchedulerGroup.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\StaTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\SynchronizationContextTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\ThreadPerTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\WorkStealingQueue!1.cs" />
+    <Compile Include="System\Threading\Tasks\Schedulers\WorkStealingTaskScheduler.cs" />
+    <Compile Include="System\Threading\Tasks\SerialTaskQueue.cs" />
+    <Compile Include="System\Threading\Tasks\TaskCompletionSourceExtensions.cs" />
+    <Compile Include="System\Threading\Tasks\TaskExtrasExtensions.cs" />
+    <Compile Include="System\Threading\Tasks\TaskFactoryExtensions.cs" />
+    <Compile Include="System\Threading\Tasks\TaskSchedulerExtensions.cs" />
+    <Compile Include="System\Threading\ThreadSafeRandom.cs" />
+    <Compile Include="System\Threading\TransferStream.cs" />
+    <Compile Include="Common\Threading\BackgroundTasks.cs" />
+    <Compile Include="Common\Threading\CountTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sn.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
