@@ -9,7 +9,7 @@ namespace LFNet.Configuration
     /// 未实现~~！Do not use!
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class SortedConfigCollection<T> : BaseConfig<SortedConfigCollection<T>> where T : SortParentConfigInfo
+    public class SortedConfigCollection<T>  where T : SortParentConfigInfo
     {
        
 

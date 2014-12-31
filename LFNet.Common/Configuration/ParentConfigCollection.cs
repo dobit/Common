@@ -9,7 +9,7 @@ namespace LFNet.Configuration
     /// 存在子父级关系的配置对象集合
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ParentConfigCollection<T> : BaseConfig<ParentConfigCollection<T>> where T : ParentConfigInfo
+    public class ParentConfigCollection<T> where T : ParentConfigInfo
     {
         private List<T> m_list = new List<T>();
 
@@ -45,7 +45,7 @@ namespace LFNet.Configuration
             IndexById.Clear();
             IndexByName.Clear();
             IndexByParentId.Clear();
-            foreach (T item in Instance.List)
+            foreach (T item in ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List)
             {
                 IndexById.Add(item.Id, item);
                 if (!IndexByName.ContainsKey(item.Name))
@@ -71,7 +71,7 @@ namespace LFNet.Configuration
         /// </summary>
         public static ReadOnlyCollection<T> ListAll()
         {
-            return Instance.List.AsReadOnly();
+            return ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.AsReadOnly();
         }
 
         #endregion
@@ -86,7 +86,7 @@ namespace LFNet.Configuration
             if (l == 0) item.Id = 1;
             else
             {
-                item.Id = Instance.List[Count - 1].Id + 1;
+                item.Id = ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List[Count - 1].Id + 1;
             }
             //IndexById.Add(item.Id, item);
             //if (!IndexByName.ContainsKey(item.Name))
@@ -101,8 +101,8 @@ namespace LFNet.Configuration
             //}
             //else
             //    IndexByParentId[item.ParentId].Add(item);
-            Instance.List.Add(item);
-            Save();
+            ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.Add(item);
+            ConfigFileManager.SaveConfig<ParentConfigCollection<T>>();
             BuildIndex();
         }
 
@@ -111,17 +111,17 @@ namespace LFNet.Configuration
             IndexById.Clear();
             IndexByName.Clear();
             IndexByParentId.Clear();
-            Instance.List.Clear();
+            ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.Clear();
         }
 
         public static bool Contains(T item)
         {
-            return Instance.List.Contains(item);
+            return ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.Contains(item);
         }
 
         public static int Count
         {
-            get { return Instance.List.Count; }
+            get { return ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.Count; }
         }
 
         public  static bool Remove(T item)
@@ -129,8 +129,8 @@ namespace LFNet.Configuration
             bool ret = false;
             if (Contains(item))
             {
-                ret = Instance.List.Remove(item);
-                Save();
+                ret = ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.Remove(item);
+                ConfigFileManager.SaveConfig<ParentConfigCollection<T>>();
                 BuildIndex();
                 //IndexById.Remove(item.Id);
                 //IndexByName[item.Name].Remove(item);
@@ -172,7 +172,7 @@ namespace LFNet.Configuration
 
         public static IEnumerator<T> GetEnumerator()
         {
-            return Instance.List.GetEnumerator();
+            return ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.GetEnumerator();
         }
 
         /// <summary>
@@ -197,10 +197,10 @@ namespace LFNet.Configuration
             T ordinaryItem = Get(item.Id);
             if(!ordinaryItem.Equals(item))
             {
-               int pos=  Instance.List.IndexOf(ordinaryItem);
-               Instance.List[pos] = item;
+                int pos = ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List.IndexOf(ordinaryItem);
+                ConfigFileManager.GetConfig<ParentConfigCollection<T>>().List[pos] = item;
             }
-            Save();
+             ConfigFileManager.SaveConfig<ParentConfigCollection<T>>();
             BuildIndex();
         }
     }

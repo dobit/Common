@@ -2,7 +2,7 @@ using LFNet.Configuration;
 
 namespace LFNet.Common.Net
 {
-    public class NetConfig:BaseConfig<NetConfig>
+    public class NetConfig
     {
         private string _tempPath;//= System.IO.Path.GetTempPath();
 

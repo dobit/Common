@@ -10,7 +10,7 @@ namespace LFNet.Configuration
     /// 未排序
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class IdConfigCollection<T> : BaseConfig<IdConfigCollection<T>> where T : IdConfigInfo
+    public class IdConfigCollection<T> where T : IdConfigInfo
     {
         private List<T> _list = new List<T>();
 
@@ -39,7 +39,7 @@ namespace LFNet.Configuration
         {
             IndexById.Clear();
 
-            foreach (T item in Instance.List)
+            foreach (T item in ConfigFileManager.GetConfig<IdConfigCollection<T>>().List)
             {
                 IndexById.Add(item.Id, item);
             }
@@ -68,7 +68,7 @@ namespace LFNet.Configuration
         /// </summary>
         public static ReadOnlyCollection<T> ListAll()
         {
-            return Instance.List.AsReadOnly();
+            return ConfigFileManager.GetConfig<IdConfigCollection<T>>().List.AsReadOnly();
         }
 
         #endregion
@@ -79,30 +79,31 @@ namespace LFNet.Configuration
         /// <param name="item"></param>
         public static void Add(T item)
         {
+            var config = ConfigFileManager.GetConfig<IdConfigCollection<T>>();
             int l = Count;
             if (l == 0) item.Id = 1;
             else
             {
-                item.Id = Instance.List[Count-1].Id + 1;
+                item.Id = config.List[Count - 1].Id + 1;
             }
             IndexById.Add(item.Id,item);
-            Instance.List.Add(item);
+            config.List.Add(item);
         }
 
         public static void Clear()
         {
             IndexById.Clear();
-            Instance.List.Clear();
+            ConfigFileManager.GetConfig<IdConfigCollection<T>>().List.Clear();
         }
 
         public static bool Contains(T item)
         {
-            return Instance.List.Contains(item);
+            return ConfigFileManager.GetConfig<IdConfigCollection<T>>().List.Contains(item);
         }
 
         public static int Count
         {
-            get { return Instance.List.Count; }
+            get { return ConfigFileManager.GetConfig<IdConfigCollection<T>>().List.Count; }
         }
 
         public static bool Remove(T item)
@@ -110,7 +111,7 @@ namespace LFNet.Configuration
             bool ret = false;
             if (Contains(item))
             {
-                ret= Instance.List.Remove(item);
+                ret = ConfigFileManager.GetConfig<IdConfigCollection<T>>().List.Remove(item);
                 IndexById.Remove(item.Id);
             }
             return ret;
@@ -128,7 +129,7 @@ namespace LFNet.Configuration
 
         public static IEnumerator<T> GetEnumerator()
         {
-            return Instance.List.GetEnumerator();
+            return ConfigFileManager.GetConfig<IdConfigCollection<T>>().List.GetEnumerator();
         }
     }
 

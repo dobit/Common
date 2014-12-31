@@ -10,9 +10,9 @@ namespace LFNet.Configuration
     /// <summary>
     /// 配置文件管理
     /// </summary>
-   public class ConfigFileManager
+    public static class ConfigFileManager
     {
-       private static string _configPath;
+        private static string _configPath;
         /// <summary>
         /// 配置文件默认保存路径
         /// </summary>
@@ -32,7 +32,6 @@ namespace LFNet.Configuration
                 }
                 return _configPath;
             }
-           // private set { _configPath = value; }
         }
 
         /// <summary>
@@ -41,131 +40,131 @@ namespace LFNet.Configuration
         internal const string configFileExtName = "config";
 
         private static Dictionary<string, object> configs = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-       private static  object locker=new object();
+        private static object locker = new object();
 
 
         private static System.IO.FileSystemWatcher fileSystemWatcher;
         static ConfigFileManager()
         {
-            
-            
-            
+
+
+
         }
 
         static void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            if(configs.ContainsKey(e.FullPath))
+            if (configs.ContainsKey(e.FullPath))
             {
                 System.Threading.Thread.Sleep(1000);
-                 configs[e.FullPath] = Utils.Load(configs[e.FullPath].GetType(), e.FullPath);
+                configs[e.FullPath] = Utils.Load(configs[e.FullPath].GetType(), e.FullPath);
             }
         }
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <typeparam name="T"></typeparam>
-       /// <param name="ifNotExistsCreate">如果不存在则创建一个</param>
-       /// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ifNotExistsCreate">如果不存在则创建一个</param>
+        /// <returns></returns>
         public static T GetConfig<T>(bool ifNotExistsCreate = false)
-       {
-           Type type = typeof (T);
+        {
+            Type type = typeof(T);
 
-           return GetConfig<T>(GetConfigFile(type), ifNotExistsCreate);
-       }
+            return GetConfig<T>(GetConfigFile(type), ifNotExistsCreate);
+        }
 
-       private static Regex m_regex = new Regex(@"(,[^\]]*)", RegexOptions.Compiled);
-        
+        private static Regex m_regex = new Regex(@"(,[^\]]*)", RegexOptions.Compiled);
+
 
         internal static string GetConfigFile(Type objType)
-       {
-           string filename = ConfigPath + objType.FullName + "." + configFileExtName;
-           filename = m_regex.Replace(filename, "");
-           return filename;
-       }
+        {
+            string filename = ConfigPath + objType.FullName + "." + configFileExtName;
+            filename = m_regex.Replace(filename, "");
+            return filename;
+        }
 
-       /// <summary>
-       /// 读取配置文件
-       /// </summary>
-       /// <typeparam name="T"></typeparam>
-       /// <param name="filename"></param>
+        /// <summary>
+        /// 读取配置文件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filename"></param>
         /// <param name="ifNotExistsCreate">如果不存在则创建一个</param>
-       /// <exception cref="System.IO.FileNotFoundException"></exception>
-       /// <exception cref="System.IO.DirectoryNotFoundException"></exception>
-       /// <returns></returns>
-       internal static T GetConfig<T>(string filename,bool ifNotExistsCreate=false)
-       {
-           if (configs.ContainsKey(filename))
-           {
-               return (T)configs[filename];
-           }
-           else
-           {
-               lock (locker)
-               {
-                   if (configs.ContainsKey(filename))
-                   {
-                       return (T) configs[filename];
-                   }
+        /// <exception cref="System.IO.FileNotFoundException"></exception>
+        /// <exception cref="System.IO.DirectoryNotFoundException"></exception>
+        /// <returns></returns>
+        internal static T GetConfig<T>(string filename, bool ifNotExistsCreate = false)
+        {
+            if (configs.ContainsKey(filename))
+            {
+                return (T)configs[filename];
+            }
+            else
+            {
+                lock (locker)
+                {
+                    if (configs.ContainsKey(filename))
+                    {
+                        return (T)configs[filename];
+                    }
 
-                   object  obj;
-                   try
-                   {
-                       obj = Utils.Load(typeof (T), filename);
-                   }
-                   catch (FileNotFoundException ex)
-                   {
-                       if (ifNotExistsCreate)
-                       {
-                           obj = Activator.CreateInstance<T>();
-                           SaveConfig(obj, filename);
-                       }
-                       else
-                       {
-                              throw ex;
-                       }
-                    
+                    object obj;
+                    try
+                    {
+                        obj = Utils.Load(typeof(T), filename);
+                    }
+                    catch (FileNotFoundException ex)
+                    {
+                        if (ifNotExistsCreate)
+                        {
+                            obj = Activator.CreateInstance<T>();
+                            SaveConfig(obj, filename);
+                        }
+                        else
+                        {
+                            throw ex;
+                        }
 
-                   }
-                   T instance = (T) obj;
-                   configs.Add(filename, obj);
-                   return instance;
-               }
 
-           }
-       }
+                    }
+                    T instance = (T)obj;
+                    configs.Add(filename, obj);
+                    return instance;
+                }
 
-       public static void SaveConfig<T>() where T:new()
-       {
-           string filename = GetConfigFile(typeof(T));
-           if (configs.ContainsKey(filename))
-           {
-               SaveConfig(configs[filename], filename);
-           }
-           else
-           {
-               SaveConfig(new T(), filename);
-           }
-       }
+            }
+        }
 
-       /// <summary>
-       /// 保存配置文件
-       /// </summary>
-       /// <param name="instance"></param>
-       public static void SaveConfig(object instance)
-       {
-           string filename = GetConfigFile(instance.GetType());
-           SaveConfig(instance, filename);
-       }
+        public static void SaveConfig<T>() where T : new()
+        {
+            string filename = GetConfigFile(typeof(T));
+            if (configs.ContainsKey(filename))
+            {
+                SaveConfig(configs[filename], filename);
+            }
+            else
+            {
+                SaveConfig(new T(), filename);
+            }
+        }
 
-       public static void SaveConfig(object instance, string filename)
-       {
-           Utils.Save(instance, filename);
-           if (configs.ContainsKey(filename))
-           {
-               configs[filename] = instance;
-           }
-       }
+        /// <summary>
+        /// 保存配置文件
+        /// </summary>
+        /// <param name="instance"></param>
+        public static void SaveConfig(this object instance)
+        {
+            string filename = GetConfigFile(instance.GetType());
+            SaveConfig(instance, filename);
+        }
 
-      
+        public static void SaveConfig(this object instance, string filename)
+        {
+            Utils.Save(instance, filename);
+            if (configs.ContainsKey(filename))
+            {
+                configs[filename] = instance;
+            }
+        }
+
+
     }
 }

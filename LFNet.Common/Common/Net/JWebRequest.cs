@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Permissions;
 //#define NET4 
 using System.Threading;
+using LFNet.Configuration;
 
 namespace LFNet.Common.Net
 {
@@ -521,7 +522,7 @@ namespace LFNet.Common.Net
 
         public HttpWebResponse GetResponse()
         {
-            if (NetConfig.Instance.UseCache && _webRequest.Method.Equals("GET", StringComparison.OrdinalIgnoreCase))
+            if (ConfigFileManager.GetConfig<NetConfig>().UseCache && _webRequest.Method.Equals("GET", StringComparison.OrdinalIgnoreCase))
             {
                 global::System.IO.FileInfo fileInfo = new FileInfo(LocalFileName); //lockHttpFileHelper.FileInfo;
                 if (fileInfo.Exists && fileInfo.Length > 0)
@@ -591,7 +592,7 @@ namespace LFNet.Common.Net
         /// <returns></returns>
         public Stream GetResponseStream()
         {
-            if (!NetConfig.Instance.CheckUpdate &&File.Exists(LocalFileName))
+            if (!ConfigFileManager.GetConfig<NetConfig>().CheckUpdate && File.Exists(LocalFileName))
             {
                 try
                 {
@@ -607,7 +608,7 @@ namespace LFNet.Common.Net
         private static string GetfileName(string url)
         {
             if (url.EndsWith("/")) url += ".default";
-            return NetConfig.Instance.TempPath + url.Replace("http://", "");
+            return ConfigFileManager.GetConfig<NetConfig>().TempPath + url.Replace("http://", "");
         }
 
        

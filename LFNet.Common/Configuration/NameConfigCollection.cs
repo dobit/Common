@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LFNet.Configuration
 {
-    public class NameConfigCollection<T> : BaseConfig<NameConfigCollection<T>> where T : NameConfigInfo
+    public class NameConfigCollection<T>  where T : NameConfigInfo
     {
         private List<T> _list = new List<T>();
 
@@ -32,7 +32,7 @@ namespace LFNet.Configuration
        protected  static void BuildIndex()
         {
             IndexByName.Clear();
-            foreach (T item in Instance.List)
+            foreach (T item in ConfigFileManager.GetConfig<NameConfigCollection<T>>().List)
             {
                 IndexByName.Add(item.Name,item);
             }
@@ -61,7 +61,7 @@ namespace LFNet.Configuration
         /// </summary>
         public static ReadOnlyCollection<T> ListAll()
         {
-            return Instance.List.AsReadOnly();
+            return ConfigFileManager.GetConfig<NameConfigCollection<T>>().List.AsReadOnly();
         }
 
         #endregion
@@ -73,23 +73,23 @@ namespace LFNet.Configuration
         public static void Add(T item)
         {
             IndexByName.Add(item.Name,item);
-            Instance.List.Add(item);
+            ConfigFileManager.GetConfig<NameConfigCollection<T>>().List.Add(item);
         }
 
         public static void Clear()
         {
             IndexByName.Clear();
-            Instance.List.Clear();
+            ConfigFileManager.GetConfig<NameConfigCollection<T>>().List.Clear();
         }
 
         public static bool Contains(T item)
         {
-            return Instance.List.Contains(item);
+            return ConfigFileManager.GetConfig<NameConfigCollection<T>>().List.Contains(item);
         }
 
         public static int Count
         {
-            get { return Instance.List.Count; }
+            get { return ConfigFileManager.GetConfig<NameConfigCollection<T>>().List.Count; }
         }
 
         public static bool Remove(T item)
@@ -97,7 +97,7 @@ namespace LFNet.Configuration
             bool ret = false;
             if (Contains(item))
             {
-                ret= Instance.List.Remove(item);
+                ret = ConfigFileManager.GetConfig<NameConfigCollection<T>>().List.Remove(item);
                 IndexByName.Remove(item.Name);
             }
             return ret;
@@ -114,7 +114,7 @@ namespace LFNet.Configuration
 
         public static IEnumerator<T> GetEnumerator()
         {
-            return Instance.List.GetEnumerator();
+            return ConfigFileManager.GetConfig<NameConfigCollection<T>>().List.GetEnumerator();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace LFNet.Configuration
     /// 如果要把Name作为主键请使用NameConfigCollection
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class IdNameConfigCollection<T> : BaseConfig<IdNameConfigCollection<T>> where T : IdNameConfigInfo
+    public class IdNameConfigCollection<T>  where T : IdNameConfigInfo
     {
        private List<T> _list = new List<T>();
 
@@ -40,7 +40,7 @@ namespace LFNet.Configuration
         {
             IndexById.Clear();
             IndexByName.Clear();
-            foreach (T item in Instance.List)
+            foreach (T item in ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List)
             {
                 IndexById.Add(item.Id, item);
                 if (!IndexByName.ContainsKey(item.Name))
@@ -75,7 +75,7 @@ namespace LFNet.Configuration
         /// </summary>
         public static ReadOnlyCollection<T> ListAll()
         {
-            return Instance.List.AsReadOnly();
+            return ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.AsReadOnly();
         }
 
         #endregion
@@ -90,7 +90,7 @@ namespace LFNet.Configuration
             if (l == 0) item.Id = 1;
             else
             {
-                item.Id = Instance.List[Count-1].Id + 1;
+                item.Id = ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List[Count - 1].Id + 1;
             }
             //IndexById.Add(item.Id,item);
             //if (!IndexByName.ContainsKey(item.Name))
@@ -99,8 +99,8 @@ namespace LFNet.Configuration
             //}
             //else
             //    IndexByName[item.Name].Add(item);
-            Instance.List.Add(item);
-            Save();
+            ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.Add(item);
+             ConfigFileManager.SaveConfig<IdNameConfigCollection<T>>();
             BuildIndex();
         }
 
@@ -108,17 +108,17 @@ namespace LFNet.Configuration
         {
             IndexById.Clear();
             IndexByName.Clear();
-            Instance.List.Clear();
+            ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.Clear();
         }
 
         public static bool Contains(T item)
         {
-            return Instance.List.Contains(item);
+            return ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.Contains(item);
         }
 
         public static int Count
         {
-            get { return Instance.List.Count; }
+            get { return ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.Count; }
         }
 
         public static bool Remove(T item)
@@ -126,7 +126,7 @@ namespace LFNet.Configuration
             bool ret = false;
             if (Contains(item))
             {
-                ret= Instance.List.Remove(item);
+                ret = ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.Remove(item);
                 //IndexById.Remove(item.Id);
                 //if (!IndexByName.ContainsKey(item.Name))
                 //{
@@ -134,7 +134,7 @@ namespace LFNet.Configuration
                 //}
                 //else
                 //    IndexByName[item.Name].Add(item);
-                Save();
+                ConfigFileManager.SaveConfig<IdNameConfigCollection<T>>(); 
                 BuildIndex();
             }
             return ret;
@@ -161,7 +161,7 @@ namespace LFNet.Configuration
 
         public static IEnumerator<T> GetEnumerator()
         {
-            return Instance.List.GetEnumerator();
+            return ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.GetEnumerator();
         }
 
         /// <summary>
@@ -173,10 +173,10 @@ namespace LFNet.Configuration
             T ordinaryItem = Get(item.Id);
             if (!ordinaryItem.Equals(item))
             {
-                int pos = Instance.List.IndexOf(ordinaryItem);
-                Instance.List[pos] = item;
+                int pos = ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List.IndexOf(ordinaryItem);
+                ConfigFileManager.GetConfig<IdNameConfigCollection<T>>().List[pos] = item;
             }
-            Save();
+             ConfigFileManager.SaveConfig<IdNameConfigCollection<T>>(); 
             BuildIndex();
         }
     }

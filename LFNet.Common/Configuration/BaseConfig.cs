@@ -40,6 +40,7 @@ namespace LFNet.Configuration
         /// <summary>
         /// 获取配置
         /// </summary>
+        [Obsolete("该抽象类已经过期，请调用ConfigFileManager.GetConfig")]
         public static T Instance
         {
             get
