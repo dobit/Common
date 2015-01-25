@@ -91,7 +91,7 @@ namespace LFNet.Configuration
         /// <exception cref="System.IO.FileNotFoundException"></exception>
         /// <exception cref="System.IO.DirectoryNotFoundException"></exception>
         /// <returns></returns>
-        internal static T GetConfig<T>(string filename, bool ifNotExistsCreate = false)
+        public static T GetConfig<T>(string filename, bool ifNotExistsCreate = false)
         {
             if (configs.ContainsKey(filename))
             {
@@ -109,7 +109,7 @@ namespace LFNet.Configuration
                     object obj;
                     try
                     {
-                        obj = Utils.Load(typeof(T), filename);
+                        obj = Utils.Load(typeof (T), filename);
                     }
                     catch (FileNotFoundException ex)
                     {
@@ -124,6 +124,18 @@ namespace LFNet.Configuration
                         }
 
 
+                    }
+                    catch (DirectoryNotFoundException ex)
+                    {
+                        if (ifNotExistsCreate)
+                        {
+                            obj = Activator.CreateInstance<T>();
+                            SaveConfig(obj, filename);
+                        }
+                        else
+                        {
+                            throw ex;
+                        }
                     }
                     T instance = (T)obj;
                     configs.Add(filename, obj);
