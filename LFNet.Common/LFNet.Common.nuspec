@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LFNet.Common</id>
+    <version>1.0</version>
+    <title>LFNet.Common</title>
+    <authors>dobit</authors>
+    <owners>dobit</owners>
+    <licenseUrl>http://www.lynfo.com</licenseUrl>
+    <projectUrl>http://www.lynfo.com</projectUrl>
+    <iconUrl>http://www.lynfo.com/icon</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>common library</description>
+    <releaseNotes>null</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>LFNet.Common</tags>
+  </metadata>
+</package>
