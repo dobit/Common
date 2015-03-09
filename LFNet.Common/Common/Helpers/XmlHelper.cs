@@ -22,7 +22,7 @@ namespace LFNet.Common.Helpers
             {
                 XmlWriter writer2 = XmlWriter.Create(writer, settings);
                 element.WriteTo(writer2);
-                writer2.Close();
+               
             }
             return sb.ToString();
         }
