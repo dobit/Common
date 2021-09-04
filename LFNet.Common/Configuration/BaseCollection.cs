@@ -1,10 +1,10 @@
-using System;
+锘縰sing System;
 using System.Collections.Generic;
 
 namespace LFNet.Configuration
 {
     /// <summary>
-    /// 基类集合
+    /// 鍩虹被闆嗗悎
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public abstract class BaseCollection<T> : List<T>
@@ -16,7 +16,7 @@ namespace LFNet.Configuration
         }
 
         /// <summary>
-        /// 加载
+        /// 鍔犺浇
         /// </summary>
         public void Load()
         {
@@ -35,11 +35,11 @@ namespace LFNet.Configuration
         }
 
         /// <summary>
-        /// 配置文件默认保存路径
+        /// 閰嶇疆鏂囦欢榛樿淇濆瓨璺緞
         /// </summary>
         private static string configPath = ConfigFileManager.ConfigPath;
         /// <summary>
-        /// 配置文件地址
+        /// 閰嶇疆鏂囦欢鍦板潃
         /// </summary>
         protected virtual string GetConfigFilename()
         {
@@ -53,7 +53,7 @@ namespace LFNet.Configuration
             Save();
         }
         /// <summary>
-        /// 添加
+        /// 娣诲姞
         /// </summary>
         /// <param name="collection"></param>
         public new void AddRange(IEnumerable<T> collection)
